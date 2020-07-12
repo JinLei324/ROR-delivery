@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<% @products.each do |product| %>
+<div style="width:660px;background:#ccc;margin:10px;">
+    <div style="float:left;margin-right:20px;"><img src="<%= product.image_url%>" style="width:100px;height:100px;"></div> 
+    <div style="float:left;width:260px;">
+        <div style="margin-top:10px;"><strong style="font-size:16px"><%= product.title%></strong></div>
+        <div><%= truncate(strip_tags(product.description), :lenght =>200) %></div>
+    </div>
+    <div style="float:left;width:60px;">
+        <div style="margin-top:40px;margin-left:20px;"><strong style="font-size:16px"><%= sprintf("$%0.02f",product.price)%></strong></div>
+    </div>
+    <div style="float:left;width:150px;margin-left:40px;">
+      <ul  style="list-style:none;margin:20px;">
+              <li><%= link_to 'Show', product %></li>
+              <li><%= link_to 'Edit', edit_product_path(product) %></li>
+              <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      </ul>
+    </div>
+    <div style="clear:both"></div>
+</div>
+<% end %>
+<br>
+<p><%= will_paginate @products%></p>
+<%= link_to 'New Product', new_product_path %>
+<br>
+
+

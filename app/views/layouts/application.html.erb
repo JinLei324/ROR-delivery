@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Litter Shop</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="head">
+    <div id="head_left"><img src="images/log.png"></div>
+    <div id="head_right">爱淘宝</div>
+    <div id="both"></div>
+</div>
+<div id="navi">
+    <div id="navi_left">
+          <ul>
+          	<li><%= link_to 'Home', store_url %></li>
+          	<li><%= link_to 'Login', login_url %></li>
+          	<li><a href="#">Question</a></li>
+          	<li><a href="">News</a></li>
+          	<li><a href="">Contact</a></li>
+              <% if session[:user_id] %>
+              <li><%= link_to 'Orders', orders_path %></li>
+              <li><%= link_to 'Products', products_path %></li>
+              <li><%= link_to 'Users', users_path %></li>
+              <li><%= button_to 'Logout', logout_path, :method => :delete %></li>
+              <% end %>
+          </ul>
+
+    </div>
+    <div id="navi_right"><%= yield%></div>	
+    <div id="both"></div>
+</div>
+<div id="foot">
+    <hr>
+    <div id="copy">Powered by Yudesong</div>
+</div>
+
+</body>
+</html>

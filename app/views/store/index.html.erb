@@ -1,0 +1,28 @@
+<% if notice %>
+<p id="notice"><%= notice%>
+<% end %>
+<div id="content">
+   <div id="left">
+   	<% @products.each do |product|%>
+	<div id="item">
+	       <div id="item_img">
+	            	<img src="<%= product.image_url%>"/>
+	       </div>
+	      <div id="item_desc">
+		<strong><%= product.title%></strong><br>
+		<%= truncate(strip_tags(product.description), :length => 120)%><br>
+		<%= sprintf("$%0.02f",product.price)%><br>
+		<%= button_to 'Add to Cart', line_items_path(:product_id => product), :remote => true%>
+	      </div>
+	      <div style="clear:both"></div>
+	</div>
+	<% end %>
+	<p><%= will_paginate @products%></p>
+   </div>	
+   <div id="right">
+   	<%= render @cart%>
+   </div>
+   <div id="both"></div>
+</div>
+<div id="foot">
+</div>
